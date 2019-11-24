@@ -1,14 +1,26 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
     <router-view />
   </div>
 </template>
 
 <style lang="scss">
+.button {
+  color: white;
+  background: rgb(0, 153, 255);
+  padding: 10px;
+  width: min-content;
+  font-size: 18px;
+  border: 0;
+  white-space: nowrap;
+
+  &:hover {
+    cursor: pointer;
+    background: rgb(7, 84, 136);
+    transition: all 0.3s ease-out;
+  }
+}
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -17,16 +29,13 @@
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
+body {
+  margin: 50px;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+ul,
+li {
+  text-decoration: none;
+  list-style: none;
 }
 </style>

@@ -1,18 +1,87 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <nav class="nav">
+      <div
+        class="nav__button"
+        :class="{ active: button == 'Input' }"
+        @click="button = 'Input'"
+      >
+        Ввод данных
+      </div>
+      <div
+        class="nav__button"
+        :class="{ active: button == 'Output' }"
+        @click="button = 'Output'"
+      >
+        Результат
+      </div>
+      <div
+        class="nav__button"
+        :class="{ active: button == 'Task' }"
+        @click="button = 'Task'"
+      >
+        Описание задачи
+      </div>
+    </nav>
+    <component :is="button" @input="changeInput" />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
 export default {
-  name: "home",
+  data() {
+    return {
+      button: "Input"
+    };
+  },
+
   components: {
-    HelloWorld
+    Input: () => import("@/components/Input.vue"),
+    Output: () => import("@/components/Output.vue"),
+    Task: () => import("@/components/Task.vue")
+  },
+
+  methods: {
+    changeInput(val) {
+      this.button = val;
+    }
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.nav {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+
+  &__button {
+    user-select: none;
+    color: rgb(0, 153, 255);
+    padding: 10px;
+    width: min-content;
+    font-size: 18px;
+    font-weight: bold;
+    white-space: nowrap;
+    text-decoration: none;
+    border: 2px solid transparent;
+    border-bottom: 2px solid black;
+
+    & + & {
+      margin-left: 15px;
+    }
+
+    &:hover {
+      cursor: pointer;
+      color: black;
+      border-bottom-color: rgb(0, 153, 255);
+      transition: all 0.3s ease-out;
+    }
+
+    &.active {
+      border-color: rgb(0, 153, 255);
+      pointer-events: none;
+    }
+  }
+}
+</style>
