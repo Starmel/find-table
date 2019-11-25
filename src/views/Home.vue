@@ -57,7 +57,7 @@ export default {
 
   &__button {
     user-select: none;
-    color: rgb(0, 153, 255);
+    color: $accent;
     padding: 10px;
     width: min-content;
     font-size: 18px;
@@ -74,12 +74,12 @@ export default {
     &:hover {
       cursor: pointer;
       color: black;
-      border-bottom-color: rgb(0, 153, 255);
+      border-bottom-color: $accent;
       transition: all 0.3s ease-out;
     }
 
     &.active {
-      border-color: rgb(0, 153, 255);
+      border-color: $accent;
       pointer-events: none;
     }
   }

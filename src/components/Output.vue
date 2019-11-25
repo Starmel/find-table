@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "Output",
 
@@ -25,6 +27,10 @@ export default {
     };
   },
 
+  computed: {
+    ...mapGetters(["data"])
+  },
+
   mounted() {
     this.fillData();
   },
@@ -37,7 +43,7 @@ export default {
           {
             label: "Data One",
             backgroundColor: "#f87979",
-            data: [10, 50, 30, 40, 50, 20, 70]
+            data: this.data
           }
         ]
       };

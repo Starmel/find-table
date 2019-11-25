@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    data: [{ df: "df" }]
+    data: [10, 50, 30, 40, 50, 20, 70]
   },
   getters: {
     data: state => state.data

@@ -7,7 +7,7 @@
 <style lang="scss">
 .button {
   color: white;
-  background: rgb(0, 153, 255);
+  background: $accent;
   padding: 10px;
   width: min-content;
   font-size: 18px;
@@ -16,7 +16,7 @@
 
   &:hover {
     cursor: pointer;
-    background: rgb(7, 84, 136);
+    background: $accent-darker;
     transition: all 0.3s ease-out;
   }
 }
