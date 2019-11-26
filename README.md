@@ -1,4 +1,6 @@
-# find_table
+# Небольшой проект по нечеткой логике
+
+Вводится высота стола, ширина, материал и количество места для протягивания ног. Выводится, стоит ли сидеть за таким столом.
 
 ## Project setup
 ```
@@ -19,6 +21,3 @@ npm run build
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
