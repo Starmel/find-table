@@ -5,9 +5,9 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        data: `
+        prependData: `
           @import "@/assets/scss/_variables.scss";
-        `
+          `
       },
       postcss: {
         // options here will be passed to postcss-loader

@@ -1,7 +1,13 @@
 <template>
   <form class="in">
-    <p>{{ data }}</p>
-    <textarea class="in__input" v-model="dataInput" />
+    <label>Высота</label>
+    <input class="in__input" v-model="height" />
+    <label>Ширина</label>
+    <input class="in__input" v-model="width" />
+    <label>Материал</label>
+    <input class="in__input" v-model="material" />
+    <label>Место для протягивания ног</label>
+    <input class="in__input" v-model="place" />
     <button class="in__button button" @click.prevent="generation">
       Подтвердить
     </button>
@@ -16,16 +22,15 @@ export default {
 
   data() {
     return {
-      dataInput: ""
+      height: null,
+      width: null,
+      material: null,
+      place: null
     };
   },
 
   computed: {
     ...mapGetters(["data"])
-  },
-
-  created() {
-    this.dataInput = this.data;
   },
 
   methods: {
@@ -41,11 +46,12 @@ export default {
 .in {
   display: flex;
   flex-direction: column;
-  width: 300px;
+  text-align: left;
 
   &__input {
-    min-width: 300px;
-    min-height: 300px;
+    width: 300px;
+    height: 30px;
+    margin-bottom: 10px;
   }
 
   &__button {
