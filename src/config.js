@@ -28,99 +28,179 @@ const fuzzyAreas = {
   }
 };
 
-// const rules = {
-//   data: [],
-//   newRule: {
-//     name: "name",
-//     type: "AND",
-//     fuzzyAreas: {
-//       inputs: [],
-//       output: {
-//         value: 0
-//       }
-//     }
-//   }
-// };
-
 const exampleVariables = {
   inputs: [
     {
-      name: "Temperature",
-      start: -20,
-      end: 40,
-      fuzzyAreasCount: 4,
-      example: 22,
+      name: "Высота",
+      example: 50,
       fuzzyAreas: [
         {
-          name: "Freezing",
+          name: "Столешница очень низко",
           type: {
             name: "Triangle",
-            ranges: [-20, -10, 0],
+            ranges: [-1, 7, 15],
             value: fuzzyAreas.types.triangle.value
           }
         },
         {
-          name: "Breeze",
+          name: "Ниже стула",
           type: {
             name: "Triangle",
-            ranges: [-5, 5, 23],
+            ranges: [12, 20, 35],
             value: fuzzyAreas.types.triangle.value
           }
         },
         {
-          name: "Warm",
+          name: "Как стул",
           type: {
             name: "Trapezoid",
-            ranges: [10, 15, 20, 25],
+            ranges: [20, 30, 50, 80],
             value: fuzzyAreas.types.trapezoid.value
           }
         },
         {
-          name: "Hot",
+          name: "Как стол",
+          type: {
+            name: "Trapezoid",
+            ranges: [70, 80, 90, 130],
+            value: fuzzyAreas.types.trapezoid.value
+          }
+        },
+        {
+          name: "С рост человека и выше",
           type: {
             name: "Triangle",
-            ranges: [20, 30, 40],
+            ranges: [120, 160, 201],
             value: fuzzyAreas.types.triangle.value
           }
         }
       ]
     },
     {
-      name: "Humidity",
-      start: 0,
-      end: 100,
-      fuzzyAreasCount: 4,
-      example: 45,
+      name: "Ширина",
+      example: 50,
       fuzzyAreas: [
         {
-          name: "Only air",
+          name: "Поместится телефон боком",
           type: {
             name: "Triangle",
-            ranges: [0, 25, 35],
+            ranges: [-1, 8, 28],
             value: fuzzyAreas.types.triangle.value
           }
         },
         {
-          name: "Airy",
+          name: "Поместится раскрытая тетрадь",
           type: {
             name: "Triangle",
-            ranges: [20, 35, 55],
+            ranges: [25, 38, 55],
             value: fuzzyAreas.types.triangle.value
           }
         },
         {
-          name: "Comfort",
+          name: "Поместится 2 раскрытые тетради",
           type: {
             name: "Trapezoid",
-            ranges: [20, 60, 70, 75],
+            ranges: [40, 60, 75, 120],
             value: fuzzyAreas.types.trapezoid.value
           }
         },
         {
-          name: "Humid",
+          name: "Можно растянуть руки в разные стороны",
+          type: {
+            name: "Trapezoid",
+            ranges: [100, 130, 160, 201],
+            value: fuzzyAreas.types.trapezoid.value
+          }
+        }
+      ]
+    },
+    {
+      name: "Материал",
+      example: 50,
+      fuzzyAreas: [
+        {
+          name: "Палки и листья",
           type: {
             name: "Triangle",
-            ranges: [40, 90, 100],
+            ranges: [-1, 3, 8],
+            value: fuzzyAreas.types.triangle.value
+          }
+        },
+        {
+          name: "Картон",
+          type: {
+            name: "Triangle",
+            ranges: [5, 10, 25],
+            value: fuzzyAreas.types.triangle.value
+          }
+        },
+        {
+          name: "Фанера",
+          type: {
+            name: "Triangle",
+            ranges: [18, 45, 60],
+            value: fuzzyAreas.types.triangle.value
+          }
+        },
+        {
+          name: "Дерево/дсп",
+          type: {
+            name: "Trapezoid",
+            ranges: [50, 55, 75, 85],
+            value: fuzzyAreas.types.trapezoid.value
+          }
+        },
+        {
+          name: "Камень",
+          type: {
+            name: "Triangle",
+            ranges: [80, 95, 101],
+            value: fuzzyAreas.types.triangle.value
+          }
+        }
+      ]
+    },
+    {
+      name: "Место для протягивания ног",
+      example: 50,
+      fuzzyAreas: [
+        {
+          name: "Для детской ступни",
+          type: {
+            name: "Trapezoid",
+            ranges: [-1, 12, 15, 23],
+            value: fuzzyAreas.types.trapezoid.value
+          }
+        },
+        {
+          name: "Для большой ступни",
+          type: {
+            name: "Triangle",
+            ranges: [20, 28, 35],
+            value: fuzzyAreas.types.triangle.value
+          }
+        },
+        {
+          name: "Норм, если согнуть ноги в коленях",
+          type: {
+            name: "Trapezoid",
+            ranges: [30, 40, 50, 65],
+            value: fuzzyAreas.types.trapezoid.value
+          }
+        },
+        {
+          name: "Можно расправить ноги среднего роста человеку",
+          type: {
+            name: "Triangle",
+            ranges: [60, 85, 100],
+            value: fuzzyAreas.types.triangle.value
+          }
+        },
+        {
+          name: "Можно расправить ноги высокого роста человеку",
+          type: {
+            name: "Triangle",
+            ranges: [90, 110, 151],
             value: fuzzyAreas.types.triangle.value
           }
         }
@@ -129,40 +209,53 @@ const exampleVariables = {
   ],
   outputs: [
     {
-      name: "Watering",
-      start: 0,
-      end: 100,
-      fuzzyAreasCount: 4,
+      name: "Стоит ли сидеть за столом",
       fuzzyAreas: [
         {
-          name: "No watering",
+          name: "Это не похоже на стол",
           type: {
             name: "Triangle",
-            ranges: [0, 50, 60],
+            ranges: [-1, 5, 10],
             value: fuzzyAreas.types.triangle.value
           }
         },
         {
-          name: "Sprinkle",
+          name: "Лучше не садиться, но если очень хочется...",
           type: {
             name: "Triangle",
-            ranges: [30, 70, 80],
+            ranges: [7, 14, 23],
             value: fuzzyAreas.types.triangle.value
           }
         },
         {
-          name: "Tiny watering",
+          name: "Для аккуратного ребенка",
+          type: {
+            name: "Triangle",
+            ranges: [18, 28, 35],
+            value: fuzzyAreas.types.triangle.value
+          }
+        },
+        {
+          name: "Для подростка",
           type: {
             name: "Trapezoid",
-            ranges: [30, 40, 70, 80],
+            ranges: [30, 40, 50, 60],
             value: fuzzyAreas.types.trapezoid.value
           }
         },
         {
-          name: "Huge watering",
+          name: "Для взрослого",
+          type: {
+            name: "Trapezoid",
+            ranges: [53, 65, 80, 85],
+            value: fuzzyAreas.types.trapezoid.value
+          }
+        },
+        {
+          name: "Для компании друзей",
           type: {
             name: "Triangle",
-            ranges: [50, 90, 100],
+            ranges: [78, 92, 101],
             value: fuzzyAreas.types.triangle.value
           }
         }
@@ -171,26 +264,37 @@ const exampleVariables = {
   ]
 };
 
-const rules0 = [
-  [0, 1, 0, 0, 3],
-  [1, 2, 0, 0, 0]
-];
+const rules0 = [];
+
+/**
+ * Мне не хотелось задавать все эти правила вручную, но
+ * оно выглядит очень даже реалистично!
+ */
+for (let i0 = 0; i0 < 5; i0++) {
+  for (let i1 = 0; i1 < 4; i1++) {
+    for (let i2 = 0; i2 < 5; i2++) {
+      for (let i3 = 0; i3 < 5; i3++) {
+        const mas = [i0, i1, i2, i3];
+        // среднее арифметическое
+        let result = mas.reduce((a, b) => a + b) / mas.length;
+        // округлить значение
+        result = Math.round(result);
+        rules0.push([i0, i1, i2, i3, result]);
+      }
+    }
+  }
+}
+
+console.log("Правила в виде массива", rules0);
+
+/**
+ * Добавляем правила в массив правил, по пути высчитывания
+ * степень принадлежности (не знаю, как точно называется)
+ */
 
 const rules = {
   data: []
 };
-
-function checkValue(rule) {
-  const compareFunction = rule.type === "AND" ? Math.min : Math.max;
-  const inputs = rule.fuzzyAreas.inputs;
-  const data = [];
-  inputs.forEach((element, index) => {
-    const example = exampleVariables.inputs[index].example;
-    data.push(element.type.value(element.type.ranges, example));
-  });
-  const result = data.reduce((next, prev) => compareFunction(next, prev));
-  return result;
-}
 
 for (let i = 0; i < rules0.length; i++) {
   const rule = {
@@ -199,39 +303,17 @@ for (let i = 0; i < rules0.length; i++) {
     fuzzyAreas: {
       inputs: [
         exampleVariables.inputs[0].fuzzyAreas[rules0[i][0]],
-        exampleVariables.inputs[1].fuzzyAreas[rules0[i][1]]
-        // exampleVariables.inputs[2].fuzzyAreas[rules0[i][2]],
-        // exampleVariables.inputs[3].fuzzyAreas[rules0[i][3]]
+        exampleVariables.inputs[1].fuzzyAreas[rules0[i][1]],
+        exampleVariables.inputs[2].fuzzyAreas[rules0[i][2]],
+        exampleVariables.inputs[3].fuzzyAreas[rules0[i][3]]
       ],
       output: exampleVariables.outputs[0].fuzzyAreas[rules0[i][4]]
     }
-    // result: checkValue(this.rules.newRule)
   };
-  const result = checkValue(rule);
-  rule.result = result;
-  console.log("rule", rule);
   rules.data.push(rule);
 }
 
-console.log("rules", rules);
-
-// const rules = {
-//     data: [{
-//         name: "0",
-//         type: "AND",
-//         fuzzyAreas: {
-//             inputs: [
-//                 { name: "Breeze", type: { name: "Triangle", ranges: [-5, 5, 23] } },
-//                 { name: "Airy", type: { name: "Triangle", ranges: [20, 35, 55] } }
-//             ],
-//             output: {
-//                 name: "Tiny watering",
-//                 type: { name: "Trapezoid", ranges: [30, 40, 70, 80] }
-//             }
-//         },
-//         result: 0.5
-//     }]
-// };
+console.log("Правила в нормальном виде", rules);
 
 const config = {
   variables: exampleVariables,
