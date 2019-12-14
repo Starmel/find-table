@@ -35,7 +35,13 @@ export default {
 
   methods: {
     async generation() {
-      await this.$store.dispatch("inputData", this.dataInput);
+      let { height, width, material, place } = this;
+      await this.$store.dispatch("inputData", {
+        height,
+        width,
+        material,
+        place
+      });
       this.$emit("input", "Output");
     }
   }
