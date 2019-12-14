@@ -7,8 +7,9 @@ const fuzzyAreas = {
         const ranges = rangesParam.map(range => parseInt(range, 10));
         const value = parseInt(valueParam, 10);
         if (value < ranges[0] || value > ranges[2]) return 0;
-        if (value < ranges[1])
+        if (value < ranges[1]) {
           return (value - ranges[0]) / (ranges[1] - ranges[0]);
+        }
         return (ranges[2] - value) / (ranges[2] - ranges[1]);
       }
     },
@@ -38,7 +39,7 @@ const exampleVariables = {
           name: "Столешница очень низко",
           type: {
             name: "Triangle",
-            ranges: [-1, 7, 15],
+            ranges: [0, 7, 15],
             value: fuzzyAreas.types.triangle.value
           }
         },
@@ -70,7 +71,7 @@ const exampleVariables = {
           name: "С рост человека и выше",
           type: {
             name: "Triangle",
-            ranges: [120, 160, 201],
+            ranges: [120, 160, 200],
             value: fuzzyAreas.types.triangle.value
           }
         }
@@ -84,7 +85,7 @@ const exampleVariables = {
           name: "Поместится телефон боком",
           type: {
             name: "Triangle",
-            ranges: [-1, 8, 28],
+            ranges: [0, 8, 28],
             value: fuzzyAreas.types.triangle.value
           }
         },
@@ -108,7 +109,7 @@ const exampleVariables = {
           name: "Можно растянуть руки в разные стороны",
           type: {
             name: "Trapezoid",
-            ranges: [100, 130, 160, 201],
+            ranges: [100, 130, 160, 200],
             value: fuzzyAreas.types.trapezoid.value
           }
         }
@@ -122,7 +123,7 @@ const exampleVariables = {
           name: "Палки и листья",
           type: {
             name: "Triangle",
-            ranges: [-1, 3, 8],
+            ranges: [0, 3, 8],
             value: fuzzyAreas.types.triangle.value
           }
         },
@@ -153,9 +154,9 @@ const exampleVariables = {
         {
           name: "Камень",
           type: {
-            name: "Triangle",
-            ranges: [80, 95, 101],
-            value: fuzzyAreas.types.triangle.value
+            name: "Trapezoid",
+            ranges: [80, 95, 100, 100],
+            value: fuzzyAreas.types.trapezoid.value
           }
         }
       ]
@@ -168,7 +169,7 @@ const exampleVariables = {
           name: "Для детской ступни",
           type: {
             name: "Trapezoid",
-            ranges: [-1, 12, 15, 23],
+            ranges: [0, 12, 15, 23],
             value: fuzzyAreas.types.trapezoid.value
           }
         },
@@ -199,9 +200,9 @@ const exampleVariables = {
         {
           name: "Можно расправить ноги высокого роста человеку",
           type: {
-            name: "Triangle",
-            ranges: [90, 110, 151],
-            value: fuzzyAreas.types.triangle.value
+            name: "Trapezoid",
+            ranges: [90, 110, 150, 150],
+            value: fuzzyAreas.types.trapezoid.value
           }
         }
       ]
@@ -215,7 +216,7 @@ const exampleVariables = {
           name: "Это не похоже на стол",
           type: {
             name: "Triangle",
-            ranges: [-1, 5, 10],
+            ranges: [0, 5, 10],
             value: fuzzyAreas.types.triangle.value
           }
         },
@@ -254,9 +255,9 @@ const exampleVariables = {
         {
           name: "Для компании друзей",
           type: {
-            name: "Triangle",
-            ranges: [78, 92, 101],
-            value: fuzzyAreas.types.triangle.value
+            name: "Trapezoid",
+            ranges: [78, 92, 100, 100],
+            value: fuzzyAreas.types.trapezoid.value
           }
         }
       ]
