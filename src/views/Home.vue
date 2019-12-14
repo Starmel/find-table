@@ -8,12 +8,11 @@
           class="variables__item"
           :key="input.name"
         >
-          <label for="variables__name">{{ input.name }}</label>
+          <label class="variables__name">{{ input.name }}</label>
           <input
             type="number"
-            step="any"
-            id="example-value"
             v-model="input.example"
+            class="variables__input"
           />
           <span
             class="variables__area"
@@ -27,7 +26,11 @@
       </form>
     </section>
 
-    <button class="button" @click="getResult">ПОСЧИТАТЬ</button>
+    <button class="button home__button" @click="getResult">ПОСЧИТАТЬ</button>
+
+    <h1>Результат: {{ result }}</h1>
+    <br />
+    {{ rules.data }}
   </div>
 </template>
 
@@ -43,7 +46,10 @@ export default {
   name: "Home",
 
   data() {
-    return config;
+    return {
+      ...config,
+      result: ""
+    };
   },
 
   methods: {
@@ -52,54 +58,52 @@ export default {
       this.rules.data.forEach(element => {
         if (element.result > res.result) res = element;
       });
+      this.result = res.fuzzyAreas.output.type.ranges[0];
       console.log(res.fuzzyAreas.output.type.ranges[0]);
-    },
-
-    toggleNorm() {
-      let newNorm;
-      if (this.rules.newRule.type === "AND") newNorm = "OR";
-      else newNorm = "AND";
-      this.rules.newRule = {
-        ...this.rules.newRule,
-        type: newNorm
-      };
-    },
-
-    checkValue(rule) {
-      const compareFunction = rule.type === "AND" ? Math.min : Math.max;
-      const inputs = rule.fuzzyAreas.inputs;
-      const data = [];
-      inputs.forEach((element, index) => {
-        const example = this.variables.inputs[index].example;
-        data.push(element.type.value(element.type.ranges, example));
-      });
-      const result = data.reduce((next, prev) => compareFunction(next, prev));
-      return result;
-    },
-
-    createRule() {
-      this.rules = {
-        ...this.rules,
-        data: [
-          ...this.rules.data,
-          {
-            ...this.rules.newRule,
-            fuzzyAreas: {
-              inputs: [...this.rules.newRule.fuzzyAreas.inputs],
-              output: { ...this.rules.newRule.fuzzyAreas.output }
-            },
-            result: this.checkValue(this.rules.newRule)
-          }
-        ]
-      };
     }
   }
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+.button {
+  color: $white;
+  background: $accent;
+  padding: 10px;
+  width: min-content;
+  font-size: 18px;
+  border: 0;
+  white-space: nowrap;
+
+  &:hover {
+    cursor: pointer;
+    background: $accent-darker;
+    transition: all 0.3s ease-out;
+  }
+}
+
 .home {
-  text-align: left;
+  &__button {
+    margin: 15px 0;
+  }
+}
+
+.variables {
+  &__name {
+    padding-right: 15px;
+    font-size: 16px;
+  }
+
+  &__input {
+    width: 300px;
+    height: 30px;
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 16px;
+  }
+
+  &__area {
+    padding-left: 10px;
+  }
 }
 </style>

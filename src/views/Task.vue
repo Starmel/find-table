@@ -1,10 +1,10 @@
 <template>
   <div class="task">
-    <h2>Описание задачи</h2>
+    <h2 class="task__title">Описание задачи</h2>
     <p>
       «Подбор стола для сидения за ним (при заданной глубине)»
     </p>
-    <h3>Входные значения</h3>
+    <h3 class="task__subtitle">Входные значения</h3>
     <vue-plotly
       class="task__chart"
       :data="data1"
@@ -29,7 +29,7 @@
       :layout="layout4"
       :options="options"
     />
-    <h3>Выходное значение</h3>
+    <h3 class="task__subtitle">Выходное значение</h3>
     <vue-plotly
       class="task__chart"
       :data="data5"
@@ -170,16 +170,15 @@ export default {
 
 <style lang="scss" scoped>
 .task {
-  text-align: left;
   line-height: 200%;
 
   &__chart {
     width: 100%;
     height: 350px;
   }
-}
 
-h3 {
-  color: $accent;
+  &__subtitle {
+    color: $accent;
+  }
 }
 </style>

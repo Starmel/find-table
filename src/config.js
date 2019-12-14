@@ -1,22 +1,4 @@
-const variables = {
-  variableType: "input",
-  newVariable: {
-    name: "",
-    start: 0,
-    end: 0,
-    fuzzyAreasCount: 1,
-    fuzzyAreas: [],
-    example: 0
-  },
-  inputs: [],
-  outputs: []
-};
-
 const fuzzyAreas = {
-  newFuzzyArea: {
-    name: "Name",
-    type: {}
-  },
   types: {
     triangle: {
       name: "Triangle",
@@ -46,31 +28,21 @@ const fuzzyAreas = {
   }
 };
 
-const rules = {
-  data: [],
-  newRule: {
-    name: "name",
-    type: "AND",
-    fuzzyAreas: {
-      inputs: [],
-      output: {
-        value: 0
-      }
-    }
-  }
-};
+// const rules = {
+//   data: [],
+//   newRule: {
+//     name: "name",
+//     type: "AND",
+//     fuzzyAreas: {
+//       inputs: [],
+//       output: {
+//         value: 0
+//       }
+//     }
+//   }
+// };
 
 const exampleVariables = {
-  ...variables,
-  variableType: "input",
-  newVariable: {
-    name: "",
-    start: 0,
-    end: 0,
-    fuzzyAreasCount: 1,
-    fuzzyAreas: [],
-    example: 0
-  },
   inputs: [
     {
       name: "Temperature",
@@ -199,8 +171,69 @@ const exampleVariables = {
   ]
 };
 
+const rules0 = [
+  [0, 1, 0, 0, 3],
+  [1, 2, 0, 0, 0]
+];
+
+const rules = {
+  data: []
+};
+
+function checkValue(rule) {
+  const compareFunction = rule.type === "AND" ? Math.min : Math.max;
+  const inputs = rule.fuzzyAreas.inputs;
+  const data = [];
+  inputs.forEach((element, index) => {
+    const example = exampleVariables.inputs[index].example;
+    data.push(element.type.value(element.type.ranges, example));
+  });
+  const result = data.reduce((next, prev) => compareFunction(next, prev));
+  return result;
+}
+
+for (let i = 0; i < rules0.length; i++) {
+  const rule = {
+    name: i,
+    type: "AND",
+    fuzzyAreas: {
+      inputs: [
+        exampleVariables.inputs[0].fuzzyAreas[rules0[i][0]],
+        exampleVariables.inputs[1].fuzzyAreas[rules0[i][1]]
+        // exampleVariables.inputs[2].fuzzyAreas[rules0[i][2]],
+        // exampleVariables.inputs[3].fuzzyAreas[rules0[i][3]]
+      ],
+      output: exampleVariables.outputs[0].fuzzyAreas[rules0[i][4]]
+    }
+    // result: checkValue(this.rules.newRule)
+  };
+  const result = checkValue(rule);
+  rule.result = result;
+  console.log("rule", rule);
+  rules.data.push(rule);
+}
+
+console.log("rules", rules);
+
+// const rules = {
+//     data: [{
+//         name: "0",
+//         type: "AND",
+//         fuzzyAreas: {
+//             inputs: [
+//                 { name: "Breeze", type: { name: "Triangle", ranges: [-5, 5, 23] } },
+//                 { name: "Airy", type: { name: "Triangle", ranges: [20, 35, 55] } }
+//             ],
+//             output: {
+//                 name: "Tiny watering",
+//                 type: { name: "Trapezoid", ranges: [30, 40, 70, 80] }
+//             }
+//         },
+//         result: 0.5
+//     }]
+// };
+
 const config = {
-  projectName: "My new project",
   variables: exampleVariables,
   fuzzyAreas,
   rules,

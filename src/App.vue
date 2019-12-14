@@ -13,36 +13,17 @@
 </template>
 
 <style lang="scss">
-.button {
-  color: white;
-  background: $accent;
-  padding: 10px;
-  width: min-content;
-  font-size: 18px;
-  border: 0;
-  white-space: nowrap;
-
-  &:hover {
-    cursor: pointer;
-    background: $accent-darker;
-    transition: all 0.3s ease-out;
-  }
-}
-
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-body {
+  text-align: left;
+  color: $accent-darkest;
   margin: 50px;
 }
 
 .router-link-exact-active {
-  border-color: $accent;
+  border-color: $accent !important;
   pointer-events: none;
 }
 
@@ -61,7 +42,7 @@ body {
     white-space: nowrap;
     text-decoration: none;
     border: 2px solid transparent;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid $black;
 
     & + & {
       margin-left: 15px;
@@ -69,7 +50,7 @@ body {
 
     &:hover {
       cursor: pointer;
-      color: black;
+      color: $black;
       border-bottom-color: $accent;
       transition: all 0.3s ease-out;
     }
