@@ -1,5 +1,5 @@
 module.exports = {
-  assetsDir: "./",
+  // assetsDir: "./",
   publicPath: process.env.NODE_ENV === "production" ? "/find-table/" : "/",
   css: {
     loaderOptions: {
