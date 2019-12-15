@@ -149,6 +149,7 @@ export default {
         const example = this.variables.inputs[index].example;
         data.push(element.type.value(element.type.ranges, example));
       });
+      console.log(data);
       const result = data.reduce((next, prev) => compareFunction(next, prev));
       return result;
     }
