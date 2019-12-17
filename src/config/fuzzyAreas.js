@@ -15,6 +15,7 @@ export default {
         }
         return (ranges[2] - value) / (ranges[2] - ranges[1]);
     },
+
     trapezoid: (rangesParam, valueParam) => {
         const ranges = rangesParam.map(range => parseInt(range, 10));
         const value = parseInt(valueParam, 10);
