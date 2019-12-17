@@ -159,16 +159,17 @@ export default {
           x: [78, 92, 100],
           y: [0, 1, 1]
         }
-      ],
-
-      // степень принадлежности y, x - единицы измерения
-      options: {}
+      ]
     };
   }
 };
 </script>
 
 <style lang="scss" scoped>
+// Стили css (почти, с препроцессором)
+
+$accent: #0099ff;
+
 .task {
   line-height: 200%;
 

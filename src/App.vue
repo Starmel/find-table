@@ -13,6 +13,14 @@
 </template>
 
 <style lang="scss">
+// Стили css (почти, с препроцессором)
+
+$accent: #0099ff;
+$accent-darker: #075488;
+$accent-darkest: #2c3e50;
+$white: white;
+$black: black;
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
